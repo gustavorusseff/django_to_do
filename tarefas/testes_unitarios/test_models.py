@@ -1,4 +1,4 @@
-import pytest
+
 from django.core.exceptions import ValidationError
 from django.test import TestCase
 from tarefas.models import Task

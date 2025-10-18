@@ -37,9 +37,7 @@
             <form method="post" action="{% url 'tarefas:toggle' t.pk %}" style="display:inline;">
 
                 {% csrf_token %}
-                <button type="submit">{% if t.done %}Desfazer{% else
-
-                    %}Concluir{% endif %}</button>
+                <button type="submit">{% if t.done %}Desfazer{% else%}Concluir{% endif %}</button>
 
             </form>
         </li>
