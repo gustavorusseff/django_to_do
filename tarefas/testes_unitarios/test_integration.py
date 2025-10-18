@@ -18,11 +18,9 @@ class FluxoBasicoTests(TestCase):
         
         toggle_url = reverse('tarefas:toggle', args=[tarefa.pk])
         r3 = self.client.post(toggle_url, follow=True)
-        self.assertEqual(r3.status_code, 200)
+        self.assertEqual(r3.status_code, 200) 
         
         tarefa.refresh_from_db()
         self.assertTrue(tarefa.done)
-        # Note: A asserção final foi mantida como '✔' com base na sua entrada,
-        # mas pode falhar se o template (lista.html) não usar este símbolo.
-        # No plano original, a asserção no modelo seria para a remoção do 'X'.
-        self.assertContains(r3, 'Concluir')
+
+        self.assertContains(r3, 'Desfazer')
