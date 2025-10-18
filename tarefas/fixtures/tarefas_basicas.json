@@ -1,0 +1,20 @@
+[
+    {
+        "model": "tarefas.task",
+        "pk": 1,
+        "fields": {
+            "title": "Ler documentação",
+            "done": false,
+            "created_at": "2025-01-01T10:00:00Z"
+        }
+    },
+    {
+        "model": "tarefas.task",
+        "pk": 2,
+        "fields": {
+            "title": "Configurar projeto",
+            "done": true,
+            "created_at": "2025-01-02T10:00:00Z"
+        }
+    }
+]

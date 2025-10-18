@@ -1,0 +1,38 @@
+name: Django tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+        
+    - name: Upgrade pip
+      run: python -m pip install --upgrade pip
+      
+    - name: Install dependencies
+      # Instala Django e coverage. Ajuste a sintaxe da string para YAML.
+      run: pip install "Django>=5.0" coverage
+      
+    # Se você optou por usar pytest, descomente as linhas abaixo.
+    # Caso contrário, o pipeline usará o `manage.py test` padrão.
+    # - name: Install Pytest plugins
+    #   run: pip install pytest pytest-django 
+      
+    - name: Run tests with Coverage
+      # O coverage run executa seus testes e salva os dados de cobertura.
+      run: coverage run manage.py test
+      
+    - name: Generate Coverage Report
+      # Exibe o relatório de cobertura no log do GitHub Actions.
+      run: coverage report -m

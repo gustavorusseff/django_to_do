@@ -1,0 +1,16 @@
+# .gitignore
+
+# Ambientes virtuais
+.venv/
+venv/
+*.pyc
+
+# Banco de dados do Django
+db.sqlite3
+
+# Cache do Python
+__pycache__/
+
+# Cobertura
+.coverage
+htmlcov/

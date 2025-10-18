@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Tarefas</title>
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            max-width: 680px;
+            margin: 2rem auto;
+        }
+
+        form {
+            margin-bottom: 1rem;
+        }
+
+        li.done {
+            opacity: .6;
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Minhas tarefas</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.title }} <button type="submit">Adicionar</button>
+        {% if form.errors %}
+        <pre>{{ form.errors }}</pre>{% endif %}
+    </form>
+    <ul>
+        {% for t in tasks %}
+        <li class="{% if t.done %}done{% endif %}">
+            {{ t }} —
+            <form method="post" action="{% url 'tarefas:toggle' t.pk %}" style="display:inline;">
+
+                {% csrf_token %}
+                <button type="submit">{% if t.done %}Desfazer{% else
+
+                    %}Concluir{% endif %}</button>
+
+            </form>
+        </li>
+        {% empty %}
+        <li>Nenhuma tarefa ainda.</li>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>
